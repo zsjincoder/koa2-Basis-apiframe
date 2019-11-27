@@ -1,0 +1,8 @@
+inspectionProfiles
+/.idea
+.bin
+/node_modules/abbrev
+/node_modules/@types/babel-types
+babylon
+/modules
+/node_modules
