@@ -16,4 +16,9 @@ router.get('/json', async (ctx, next) => {
   }
 })
 
+router.get('/apidoc', function (req, res, next) {
+  res.type('text/html')
+  res.sendfile('public/apidoc/index.html');
+});
+
 module.exports = router

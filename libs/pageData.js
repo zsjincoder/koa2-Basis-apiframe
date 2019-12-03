@@ -1,3 +1,6 @@
+/***
+ * 分页信息返回
+ */
 class pageData {
     static page = 1;
     static pageSize = 10;

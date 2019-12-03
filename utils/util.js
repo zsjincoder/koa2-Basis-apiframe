@@ -1,6 +1,7 @@
 //获取本机ip地址
 const interfaces = require('os').networkInterfaces(); // 在开发环境中获取局域网中的本机iP地址
 
+
 class Util {
     /***
      * 获取本机ip地址

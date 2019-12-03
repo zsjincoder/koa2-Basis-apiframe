@@ -3,7 +3,22 @@ const Response = require("../utils/response");
 const PageData = require('../libs/pageData');
 const UploadFileService = require("../service/uploadfile");
 
+
+/**
+ * @apiDefine UserGroupName 用户管理（User）
+ */
+
 class userController {
+    /**
+     * @api {post} /user/create 用户新增(create)
+     * @apiDescription 用户新增
+     * @apiGroup UserGroupName
+     * @apiName create
+     * @apiVersion 1.0.0
+     * @apiParam {String} name  姓名（必传）.
+     * @apiParam {String = "1","2"} sex    Mandatory  性别（必传）.
+     * @apiParam {String} email    Mandatory  电子邮箱（必传）.
+     */
     static async create(ctx) {
         //接收客户端
         let req = ctx.request.body;
@@ -31,6 +46,14 @@ class userController {
         }
     };
 
+    /**
+     * @api {post} /user/findUserForId  根据id查询用户(findUserForId)
+     * @apiDescription 根据id查询用户
+     * @apiGroup UserGroupName
+     * @apiVersion 1.0.0
+     * @apiName findUserForId
+     * @apiParam {String} id  用户id（必传）.
+     */
     static async findUserForId(ctx) {
         //接收客户端
         let req = ctx.request.body;
@@ -52,6 +75,14 @@ class userController {
         }
     }
 
+    /**
+     * @api {post} /user/findUserAllUser 查询所有用户(findUserAllUser)
+     * @apiGroup UserGroupName
+     * @apiVersion 1.0.0
+     * @apiName findUserAllUser
+     * @apiParam {Number} page 当前页（必传）.
+     * @apiParam {Number} pageSize 分页条数（必传）.
+     */
     static async findUserAllUser(ctx) {
         //接收客户端
         let req = ctx.request.body;
@@ -65,6 +96,13 @@ class userController {
         }
     }
 
+    /**
+     * @api {post} /user/uploadFile 单文件上传(uploadFile)
+     * @apiGroup UserGroupName
+     * @apiVersion 1.0.0
+     * @apiName uploadFile
+     * @apiParam {Object} file （必传）.
+     */
     static async uploadFile(ctx) {
         try {
             const file = ctx.request.files.file;
@@ -75,6 +113,13 @@ class userController {
         }
     }
 
+    /**
+     * @api {post} /user/uploadFiles 多文件上传(uploadFiles)
+     * @apiGroup UserGroupName
+     * @apiVersion 1.0.0
+     * @apiName uploadFiles
+     * @apiParam {Object} files （必传）.
+     */
     static async uploadFiles(ctx) {
         try {
             const files = ctx.request.files.files;

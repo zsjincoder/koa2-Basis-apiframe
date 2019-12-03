@@ -10,9 +10,16 @@ Config.setRootDir(__dirname);
 //文件上传中间件
 const koaBody = require('koa-body')
 
+
+//路由列表
 const index = require('./routes/index')
 const users = require('./routes/users')
 const user = require('./routes/user')
+const reptile = require('./routes/reptile')
+
+
+
+
 
 //upload file(文件上传)
 app.use(koaBody({
@@ -49,6 +56,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(user.routes(), user.allowedMethods());
+app.use(reptile.routes(), reptile.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {

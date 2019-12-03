@@ -1,0 +1,14 @@
+{
+  "name": "node_koa_test",
+  "version": "0.19.0",
+  "description": "koa相关API文档",
+  "title": "koa二次封装",
+  "url": "http://localhost:3000/api/v1",
+  "sampleUrl": "http://localhost:3000/api/v1",
+  "forceLanguage": "zh-cn",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true,
+    "JQueryAjaxSetup":["http://api.jquery.com/jquery.ajaxsetup/"]
+  }
+}
