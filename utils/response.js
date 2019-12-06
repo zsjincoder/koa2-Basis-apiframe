@@ -4,9 +4,9 @@ class Response {
             code: 0,
             status: 200,
             statusMessage: 'success',
-            page: pageData.page,
-            pageSize: pageData.pageSize,
-            total: pageData.total,
+            page: Number(pageData.page),
+            pageSize: Number(pageData.pageSize),
+            total: Number(pageData.total),
             data,
             msg: '操作成功'
         }

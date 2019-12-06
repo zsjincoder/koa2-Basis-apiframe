@@ -39,6 +39,7 @@ app.use(views(__dirname + '/views', {
 
 // logger
 const logsUtil = require('./utils/logs.js');
+const Response = require("./utils/response");
 app.use(async (ctx, next) => {
     const start = new Date();
     let intervals;//响应间隔时间
@@ -47,8 +48,10 @@ app.use(async (ctx, next) => {
         intervals = new Date() - start;
         logsUtil.logResponse(ctx, intervals);     //记录响应日志
     } catch (error) {
+        console.log("发生了错误！")
         intervals = new Date() - start;
         logsUtil.logError(ctx, error, intervals);//记录异常日志
+        ctx.body = Response.errorResponse(500);
     }
 })
 
