@@ -31,7 +31,9 @@ class userController {
         }
     };
 
-    static async findUserForId(ctx) {
+    static async findUserForId(
+
+    ) {
         //接收客户端
         let req = ctx.request.body;
         if (!req.id || req.id === undefined) {
@@ -47,8 +49,7 @@ class userController {
                 data
             }
         } catch (e) {
-            console.error(e);
-            ctx.body = Response.errorResponse(412);
+            throw e;
         }
     }
 
@@ -61,7 +62,7 @@ class userController {
             pageD.setTotal(data.count);
             ctx.body = Response.successResponse(data.rows, pageD);
         } catch (e) {
-            ctx.body = Response.errorResponse(412, e);
+            throw e;
         }
     }
 
@@ -70,8 +71,7 @@ class userController {
             const file = ctx.request.files.file;
             ctx.body = Response.successResponse(await UploadFileService.uploadOneFile(file));
         } catch (e) {
-            console.log(e);
-            ctx.body = Response.errorResponse(500)
+           throw e;
         }
     }
 
@@ -80,8 +80,7 @@ class userController {
             const files = ctx.request.files.files;
             ctx.body = Response.successResponse(await UploadFileService.uploadMultipleFile(files));
         } catch (e) {
-            console.log(e);
-            ctx.body = Response.errorResponse(500)
+           throw e;
         }
     }
 }
