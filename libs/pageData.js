@@ -8,8 +8,8 @@ class pageData {
 
     constructor(data){
         if(!data.hasOwnProperty('page') || !data.hasOwnProperty('pageSize')) throw "分页信息缺失！";
-        this.page = data.page;
-        this.pageSize = data.pageSize;
+        this.page = Number(data.page);
+        this.pageSize =Number(data.pageSize);
     }
     setTotal(total){
         this.total = total;

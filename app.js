@@ -23,9 +23,9 @@ const reptile = require('./routes/reptile')
 
 //upload file(文件上传)
 app.use(koaBody({
-    multipart:true,
-    formidable:{
-        maxFieldsSize:2000*1024*1024  //最大上传文件为20M
+    multipart: true,
+    formidable: {
+        maxFieldsSize: 2000 * 1024 * 1024  //最大上传文件为20M
     }
 }));
 
@@ -34,22 +34,32 @@ onerror(app)
 
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+    enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+    extension: 'pug'
 }))
 
 // logger
+const logsUtil = require('./utils/logs.js');
+const Response = require("./utils/response");
 app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+    const start = new Date();
+    let intervals;//响应间隔时间
+    try {
+        await next();
+        intervals = new Date() - start;
+        logsUtil.logResponse(ctx, intervals);     //记录响应日志
+    } catch (error) {
+        console.log("发生了错误！")
+        intervals = new Date() - start;
+        logsUtil.logError(ctx, error, intervals);//记录异常日志
+        ctx.body = Response.errorResponse(500);
+    }
 })
 
 // routes
@@ -60,7 +70,7 @@ app.use(reptile.routes(), reptile.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
+    console.error('server error', err, ctx)
 });
 
 module.exports = app
