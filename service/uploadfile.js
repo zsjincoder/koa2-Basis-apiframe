@@ -22,7 +22,7 @@ class UploadFileService {
         let filePath = path.join(__dirname, '../public/upload/') + fP;
         const upStream = fs.createWriteStream(filePath);
         const pro = new Promise((resolve) => {
-            var stream = render.pipe(upStream);
+            let stream = render.pipe(upStream);
             stream.on('finish', function () {
                 resolve(Config.localhostAddress + Config.port + '/upload/' + fP);
             });

@@ -55,7 +55,6 @@ app.use(async (ctx, next) => {
         intervals = new Date() - start;
         logsUtil.logResponse(ctx, intervals);     //记录响应日志
     } catch (error) {
-        console.log("发生了错误！")
         intervals = new Date() - start;
         logsUtil.logError(ctx, error, intervals);//记录异常日志
         ctx.body = Response.errorResponse(500);
