@@ -9,10 +9,10 @@ class Util {
      */
     static getAddress() {
         let IPAddress = '';
-        for (var devName in interfaces) {
-            var iface = interfaces[devName];
-            for (var i = 0; i < iface.length; i++) {
-                var alias = iface[i];
+        for (let devName in interfaces) {
+            let iface = interfaces[devName];
+            for (let i = 0; i < iface.length; i++) {
+                let alias = iface[i];
                 if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
                     IPAddress = alias.address;
                 }
@@ -22,15 +22,15 @@ class Util {
     }
 
     static getUuid2(len,radix) {
-        var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-        var uuid = [],
+        let chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+        let uuid = [],
             i;
         radix = radix || chars.length;
 
         if (len) {
             for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
         } else {
-            var r;
+            let r;
             uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
             uuid[14] = '4';
             for (i = 0; i < 36; i++) {

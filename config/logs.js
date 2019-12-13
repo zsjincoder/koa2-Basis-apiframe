@@ -31,8 +31,8 @@ module.exports = {
                 "pattern": "yyyy-MM-dd.log",
                 "alwaysIncludePattern": true,
                 "encoding": "utf-8",
-                "maxLogSize": 1000,
-                "numBackups": 3,
+                "maxLogSize": 100000,
+                "numBackups": 200,
                 "path": errorPath
             },
             "resLogger": {
@@ -41,8 +41,8 @@ module.exports = {
                 "pattern": "yyyy-MM-dd.log",
                 "alwaysIncludePattern": true,
                 "encoding": "utf-8",
-                "maxLogSize": 1000,
-                "numBackups": 3,
+                "maxLogSize": 100000,
+                "numBackups": 200,
                 "path": responsePath
             },
             "handleLogger": {
@@ -51,8 +51,8 @@ module.exports = {
                 "pattern": "yyyy-MM-dd.log",
                 "alwaysIncludePattern": true,
                 "encoding": "utf-8",
-                "maxLogSize": 1000,
-                "numBackups": 3,
+                "maxLogSize": 100000,
+                "numBackups": 200,
                 "path": responsePath
             },
         },

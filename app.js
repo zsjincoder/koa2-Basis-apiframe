@@ -69,6 +69,7 @@ app.use(reptile.routes(), reptile.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {
+    logsUtil.logError(ctx, err, new Date().toString());//记录异常日志
     console.error('server error', err, ctx)
 });
 
