@@ -1,22 +1,26 @@
 class Response {
-    static successResponse(data, pageData = {page:1,pageSize: 10,total: 0}) {
-        return {
+    static successResponse(data, pageData = {page: 1, pageSize: 10, total: 0}, noPage = true) {
+        let resData = {
             code: 0,
             status: 200,
             statusMessage: 'success',
-            page: Number(pageData.page),
-            pageSize: Number(pageData.pageSize),
-            total: Number(pageData.total),
             data,
             msg: '操作成功'
+        };
+        if (noPage) {
+           resData.page = Number(pageData.page);
+           resData.pageSize = Number(pageData.pageSize);
+           resData.total = Number(pageData.total);
         }
+
+        return resData
     }
 
-    static errorResponse(status, msg = '操作失败！') {
+    static errorResponse(status, errMsg = '操作失败！') {
         return {
             code: -1,
             status,
-            msg
+            errMsg
         }
     }
 }

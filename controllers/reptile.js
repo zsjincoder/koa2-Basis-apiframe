@@ -7,21 +7,22 @@ const DouBan = require('../service/doubantop');
 class Reptile {
 
     /**
-     * @api {get} /reptile/getMovieRanking 查询电影点评前十排行(getMovieRanking)
+     * @api {get} /reptile/getRanking 查询各个类型排行
      * @apiGroup ReptileGroupName
-     * @apiName getMovieRank
-     * @apiParam {String} url 要爬取的网站
+     * @apiName getRanking
+     * @apiParam {String} type (movie,music)要爬取的排行的类型
      * @apiVersion 1.0.0
      */
-    static async getMovieRank(ctx) {
-        let movieUrl = ctx.request.query.url;
-        if (!movieUrl) {
-            ctx.body = Response.errorResponse(412, "url不存在！");
+    static async getRanking(ctx) {
+        let type = ctx.request.query.type;
+        if (!type) {
+            ctx.body = Response.errorResponse(412, "type类型参数为空！");
             return
         }
         try {
-            ctx.body = Response.successResponse(await DouBan.getDouBanTop(movieUrl))
+            ctx.body = Response.successResponse(await DouBan.getDouBanTop(type),null,false)
         } catch (e) {
+            console.error(e);
             throw e;
         }
     }
@@ -35,6 +36,20 @@ class Reptile {
     static async getDownUrl(ctx) {
         try {
             ctx.body = Response.successResponse(await DouBan.getAllVideo())
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * @api {get} /reptile/getDPCQText 爬取斗破苍穹小说并下载
+     * @apiGroup ReptileGroupName
+     * @apiName getDPCQText
+     * @apiVersion 1.0.0
+     */
+    static async getDPCQText(ctx) {
+        try {
+            ctx.body = Response.successResponse(await DouBan.getDPCQtext(),null,false)
         } catch (e) {
             throw e;
         }
